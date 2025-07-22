@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "summaries-app",
+  "compatibility_date": "2025-04-04",
+  "main": "./workers/app.ts",
+  "vars": {
+    "CLOUDFLARE_API_KEY_DRIZZLE":"",
+    "CLOUDFLARE_ACCOUNT_ID":"",
+    "B2_REGION":"",
+    "B2_ENDPOINT":"",
+    "B2_KEY_ID":"",
+    "B2_APP_KEY":"",
+    "B2_BUCKET":"",
+    "B2_BUCKET_ID":"",
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "",
+      "database_id": "",
+      "migrations_dir": "drizzle"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "summarizer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "cf-typegen": "wrangler types",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply --local DB",
+    "db:migrate-production": "drizzle-kit migrate",
+    "deploy": "pnpm run build && wrangler deploy",
+    "create-version": "pnpm run build && wrangler versions upload",
+    "dev": "vite dev",
+    "postinstall": "pnpm run cf-typegen",
+    "preview": "pnpm run build && vite preview",
+    "typecheck": "pnpm run cf-typegen && react-router typegen && tsc -b"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "isbot": "^5.1.27",
+    "multer": "^1.4.5-lts.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router": "^7.7.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.0.12",
+    "@react-router/dev": "^7.7.0",
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^20",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@types/uuid": "^10.0.0",
+    "dotenv-cli": "^7.4.3",
+    "drizzle-kit": "~0.31.4",
+    "drizzle-orm": "^0.44.3",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "wrangler": "^4.13.2"
+  }
+}

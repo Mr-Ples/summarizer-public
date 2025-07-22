@@ -1,0 +1,19 @@
+.DS_Store
+/node_modules/
+*.tsbuildinfo
+
+# React Router
+/.react-router/
+/build/
+
+# Cloudflare
+.mf
+.wrangler
+
+# Cloudflare D1 local database files
+/.wrangler/state/v3/d1/miniflare-D1DatabaseObject/
+
+SPEC.md
+.env
+.dev.vars
+wrangler.jsonc
