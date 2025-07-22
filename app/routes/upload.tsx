@@ -1034,7 +1034,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
           }]
         })
       })
-console.log(response)
+
       if (!response.ok) {
         const errorText = await response.text()
         console.error(`[AI-METADATA] API Error Response:`, errorText)

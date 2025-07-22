@@ -294,11 +294,19 @@ Return ONLY the JSON array, no other text.`
         `[Chunk ${chunkNumber}/${totalChunks}] Calling Gemini for structure analysis...`
       )
 
+      // Check if this is a thinking model and disable thinking
+      const isThinkingModel = selectedModel.includes("gemini-2.5") && !selectedModel.includes("gemini-2.5-pro")
+
+      if (isThinkingModel) {
+        console.log(`[GEMINI-STRUCTURE] Thinking model detected: ${selectedModel}. Disabling thinking tokens.`)
+      }
+      
       const request: GenerateContentRequest = {
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
           temperature: 0.3,
           maxOutputTokens: 8192,
+          ...(isThinkingModel && { thinkingConfig: { thinkingBudget: 0 } }),
         },
       }
 
@@ -329,6 +337,7 @@ Continue the JSON response:`
           generationConfig: {
             temperature: 0.3,
             maxOutputTokens: 8192,
+            ...(isThinkingModel && { thinkingConfig: { thinkingBudget: 0 } }),
           },
         }
 

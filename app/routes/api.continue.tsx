@@ -182,6 +182,22 @@ Create exactly ${bulletPoints} bullet points that comprehensively summarize this
         `[GEMINI-SUMMARY] Making API call for summary of "${sectionTitle}"`
       )
 
+      // Check if this is a thinking model and disable thinking
+      const isThinkingModel = selectedModel.includes("gemini-2.5") && !selectedModel.includes("gemini-2.5-pro")
+            
+      if (isThinkingModel) {
+        console.log(`[GEMINI-SUMMARY] Thinking model detected: ${selectedModel}. Disabling thinking tokens.`)
+      }
+      
+      const requestBody = {
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 2048,
+          ...(isThinkingModel && { thinkingConfig: { thinkingBudget: 0 } }),
+        },
+      }
+
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${selectedModel.replace(
           "models/",
@@ -190,13 +206,7 @@ Create exactly ${bulletPoints} bullet points that comprehensively summarize this
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: {
-              temperature: 0.3,
-              maxOutputTokens: 2048,
-            },
-          }),
+          body: JSON.stringify(requestBody),
         }
       )
 

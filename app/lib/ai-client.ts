@@ -25,6 +25,9 @@ export interface GenerateContentRequest {
   generationConfig: {
     temperature: number
     maxOutputTokens: number
+    thinkingConfig?: {
+      thinkingBudget: number
+    }
   }
 }
 

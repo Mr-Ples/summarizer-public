@@ -21,7 +21,7 @@ export function meta({}: Route.MetaArgs) {
 type Document = {
   id: number
   originalName: string
-  status: "completed"
+  status: "completed" | "processing" | "failed" | "awaiting_outline_approval" | "awaiting_summary_approval"
   hasTableOfContents?: boolean
   tocGeneratedAt?: Date
   summary?: string
@@ -39,7 +39,7 @@ type Section = {
   startPage: number
   endPage: number
   sectionNumber: number
-  pdfPath?: string
+  pdfPath?: string | null
 }
 
 export async function loader({ context }: Route.LoaderArgs) {
