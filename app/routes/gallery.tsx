@@ -1,4 +1,5 @@
 import * as schema from "~/database/schema"
+import { eq, desc, asc } from "drizzle-orm"
 import { Link } from "react-router"
 import { useState, useEffect, useMemo } from "react"
 
@@ -42,18 +43,20 @@ type Section = {
 
 export async function loader({ context }: Route.LoaderArgs) {
   // Get ONLY completed documents with their sections
-  const documents = await context.db.query.documents.findMany({
-    where: (documents, { eq }) => eq(documents.status, "completed"),
-    orderBy: (documents, { desc }) => [desc(documents.createdAt)],
-  })
+  const documents = await context.db
+    .select()
+    .from(schema.documents)
+    .where(eq(schema.documents.status, "completed"))
+    .orderBy(desc(schema.documents.createdAt))
 
   // Get sections for all completed documents
   const sections: { [documentId: number]: Section[] } = {}
   for (const doc of documents) {
-    const docSections = await context.db.query.sections.findMany({
-      where: (sections, { eq }) => eq(sections.documentId, doc.id),
-      orderBy: (sections, { asc }) => [asc(sections.sectionNumber)],
-    })
+    const docSections = await context.db
+      .select()
+      .from(schema.sections)
+      .where(eq(schema.sections.documentId, doc.id))
+      .orderBy(asc(schema.sections.sectionNumber))
     sections[doc.id] = docSections
   }
 
@@ -703,12 +706,23 @@ export default function Gallery({ loaderData }: Route.ComponentProps) {
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
             Browse completed PDF summaries
           </p>
-          <Link
-            to="/"
-            className="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
-          >
-            ← Upload New PDF
-          </Link>
+          <div className="flex justify-center space-x-4">
+            <Link
+              to="/"
+              className="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+            >
+              ← Upload New PDF
+            </Link>
+            <a
+              href="https://github.com/Mr-Ples/summarizer-public"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+            >
+              <img src="/assets/github-mark-white.png" alt="GitHub" className="w-4 h-4 mr-2" />
+              GitHub
+            </a>
+          </div>
         </header>
 
         {/* Search Bar */}
