@@ -1144,35 +1144,35 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <header className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
             PDF Summarizer
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-4">
             AI-powered document analysis with Google Gemini
           </p>
-          <div className="flex justify-center space-x-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4">
             <a
               href="https://github.com/Mr-Ples/summarizer-public"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+              className="inline-flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-md transition duration-200"
             >
               <img src={GithubImage} alt="GitHub" className="w-4 h-4 mr-2" />
               GitHub
             </a>
             <Link
               to="/gallery"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200 text-center"
             >
               View Public Gallery →
             </Link>
           </div>
         </header>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6">
             Upload PDF
           </h2>
 
@@ -1381,10 +1381,10 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
 
             {/* File Processing Status */}
             {isProcessingFile && (
-              <div className="p-4 bg-blue-50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
-                  <div>
+              <div className="p-3 sm:p-4 bg-blue-50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600 flex-shrink-0"></div>
+                  <div className="min-w-0">
                     <p className="text-blue-800 dark:text-blue-200 font-medium text-sm">
                       🤖 Analyzing PDF with AI...
                     </p>
@@ -1398,21 +1398,21 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
 
             {/* File Metadata Display */}
             {fileMetadata && !isProcessingFile && (
-              <div className="p-4 bg-green-50 dark:bg-green-900/50 border border-green-200 dark:border-green-800 rounded-lg">
+              <div className="p-3 sm:p-4 bg-green-50 dark:bg-green-900/50 border border-green-200 dark:border-green-800 rounded-lg">
                 <h4 className="text-sm font-medium text-green-800 dark:text-green-200 mb-2">
                   🤖 AI Analysis Complete
                 </h4>
                 <div className="space-y-1 text-sm">
                   {fileMetadata.title && (
-                    <div className="flex items-center">
-                      <span className="text-green-600 dark:text-green-300 font-medium w-16">Title:</span>
-                      <span className="text-green-800 dark:text-green-200">{fileMetadata.title}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                      <span className="text-green-600 dark:text-green-300 font-medium sm:w-16 flex-shrink-0">Title:</span>
+                      <span className="text-green-800 dark:text-green-200 break-words">{fileMetadata.title}</span>
                     </div>
                   )}
                   {fileMetadata.author && (
-                    <div className="flex items-center">
-                      <span className="text-green-600 dark:text-green-300 font-medium w-16">Author:</span>
-                      <span className="text-green-800 dark:text-green-200">{fileMetadata.author}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                      <span className="text-green-600 dark:text-green-300 font-medium sm:w-16 flex-shrink-0">Author:</span>
+                      <span className="text-green-800 dark:text-green-200 break-words">{fileMetadata.author}</span>
                     </div>
                   )}
                   {!fileMetadata.title && !fileMetadata.author && (
@@ -1555,10 +1555,10 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
 
           {/* Client-side text extraction indicator */}
           {isExtractingText && (
-            <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg">
-              <div className="flex items-center space-x-3">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
-                <div>
+            <div className="mt-4 p-3 sm:p-4 bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg">
+              <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600 flex-shrink-0"></div>
+                <div className="min-w-0">
                   <p className="text-blue-800 dark:text-blue-200 font-medium text-sm">
                     🔍 Extracting text from PDF...
                   </p>
@@ -1572,28 +1572,28 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
         </div>
 
         {processingStatus && (
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4">
               Processing Status - Document #{processingStatus.documentId}
             </h3>
 
             {/* PDF Metadata Display */}
             {(processingStatus.pdfTitle || processingStatus.pdfAuthor) && (
-              <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-blue-50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
                 <h4 className="text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
                   📄 PDF Information
                 </h4>
                 <div className="space-y-1 text-sm">
                   {processingStatus.pdfTitle && (
-                    <div className="flex items-center">
-                      <span className="text-blue-600 dark:text-blue-300 font-medium w-16">Title:</span>
-                      <span className="text-blue-800 dark:text-blue-200">{processingStatus.pdfTitle}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                      <span className="text-blue-600 dark:text-blue-300 font-medium sm:w-16 flex-shrink-0">Title:</span>
+                      <span className="text-blue-800 dark:text-blue-200 break-words">{processingStatus.pdfTitle}</span>
                     </div>
                   )}
                   {processingStatus.pdfAuthor && (
-                    <div className="flex items-center">
-                      <span className="text-blue-600 dark:text-blue-300 font-medium w-16">Author:</span>
-                      <span className="text-blue-800 dark:text-blue-200">{processingStatus.pdfAuthor}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                      <span className="text-blue-600 dark:text-blue-300 font-medium sm:w-16 flex-shrink-0">Author:</span>
+                      <span className="text-blue-800 dark:text-blue-200 break-words">{processingStatus.pdfAuthor}</span>
                     </div>
                   )}
                 </div>
@@ -1604,7 +1604,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
               <div className="space-y-4">
                 {/* Progress Bar with Enhanced Info */}
                 <div>
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
                     <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
                       {processingStatus.progress || 0}% Complete
                     </span>
@@ -1622,7 +1622,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                   </div>
 
                   {/* Progress Milestones */}
-                  <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  <div className="grid grid-cols-2 sm:flex sm:justify-between text-xs text-gray-400 mt-1 gap-1">
                     <span
                       className={
                         processingStatus.progress >= 5
@@ -1684,13 +1684,13 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
 
                 {/* Current Status Message with Enhanced Styling */}
                 {processingStatus.statusMessage && (
-                  <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/50 dark:to-indigo-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
-                    <div className="flex items-start space-x-3">
+                  <div className="p-3 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/50 dark:to-indigo-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
+                    <div className="flex flex-col sm:flex-row sm:items-start space-y-2 sm:space-y-0 sm:space-x-3">
                       <div className="flex-shrink-0">
                         <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse mt-2"></div>
                       </div>
-                      <div className="flex-grow">
-                        <p className="text-blue-800 dark:text-blue-200 font-medium text-sm leading-relaxed">
+                      <div className="flex-grow min-w-0">
+                        <p className="text-blue-800 dark:text-blue-200 font-medium text-sm leading-relaxed break-words">
                           {processingStatus.statusMessage}
                         </p>
                         <p className="text-blue-600 dark:text-blue-300 text-xs mt-1">
@@ -1704,13 +1704,13 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
 
                 {/* Table of Contents Available */}
                 {processingStatus.hasTableOfContents && (
-                  <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/50 dark:to-emerald-900/50 border border-green-200 dark:border-green-800 rounded-lg">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
+                  <div className="p-3 sm:p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/50 dark:to-emerald-900/50 border border-green-200 dark:border-green-800 rounded-lg">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                         <div className="flex-shrink-0">
                           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <p className="text-green-800 dark:text-green-200 font-medium">
                             📋 Table of contents ready!
                           </p>
@@ -1720,16 +1720,16 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                           </p>
                         </div>
                       </div>
-                      <div className="flex space-x-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <button
                           onClick={downloadTableOfContents}
-                          className="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition duration-200 font-medium shadow-sm"
+                          className="px-3 sm:px-4 py-2 bg-green-600 text-white text-xs sm:text-sm rounded-md hover:bg-green-700 transition duration-200 font-medium shadow-sm"
                         >
                           📥 Download TXT
                         </button>
                         <button
                           onClick={downloadTableOfContentsJson}
-                          className="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition duration-200 font-medium shadow-sm"
+                          className="px-3 sm:px-4 py-2 bg-blue-600 text-white text-xs sm:text-sm rounded-md hover:bg-blue-700 transition duration-200 font-medium shadow-sm"
                         >
                           📥 Download JSON
                         </button>
@@ -1744,9 +1744,9 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
               (processingStatus.status === "processing" &&
                 processingStatus.sections &&
                 processingStatus.sections.length > 0)) && (
-              <div className="space-y-4 mt-unit-2">
+              <div className="space-y-4 mt-4">
                 {processingStatus.status === "completed" && (
-                  <div className="p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/50 dark:to-emerald-900/50 border border-green-200 dark:border-green-800 rounded-lg">
+                  <div className="p-4 sm:p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/50 dark:to-emerald-900/50 border border-green-200 dark:border-green-800 rounded-lg">
                     <div className="text-center space-y-3">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 dark:bg-green-800 rounded-full">
                         <svg
@@ -1764,7 +1764,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                         </svg>
                       </div>
                       <div>
-                        <p className="text-green-800 dark:text-green-200 font-bold text-lg">
+                        <p className="text-green-800 dark:text-green-200 font-bold text-base sm:text-lg">
                           🎉 Processing Complete!
                         </p>
                         <p className="text-green-600 dark:text-green-300 text-sm mt-1">
@@ -1779,7 +1779,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                 {processingStatus.status === "processing" &&
                   processingStatus.sections &&
                   processingStatus.sections.length > 0 && (
-                    <div className="p-6 mt-2 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/50 dark:to-indigo-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
+                    <div className="p-4 sm:p-6 mt-2 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/50 dark:to-indigo-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
                       <div className="text-center space-y-3">
                         <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-800 rounded-full">
                           <svg
@@ -1797,7 +1797,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                           </svg>
                         </div>
                         <div>
-                          <p className="text-blue-800 dark:text-blue-200 font-bold text-lg">
+                          <p className="text-blue-800 dark:text-blue-200 font-bold text-base sm:text-lg">
                             ⚡ Sections Ready for Download!
                           </p>
                           <p className="text-blue-600 dark:text-blue-300 text-sm mt-1">
@@ -1813,9 +1813,9 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                 {processingStatus.sections &&
                   processingStatus.sections.length > 0 && (
                     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
-                      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                          📄 Available Sections (
+                      <div className="px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                           Available Sections (
                           {processingStatus.sections.length})
                           {processingStatus.status === "processing" && (
                             <span className="ml-2 text-sm font-normal text-blue-600 dark:text-blue-400">
@@ -1827,17 +1827,17 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                           Download individual section PDFs with summaries
                         </p>
                       </div>
-                      <div className="p-6">
+                      <div className="p-4 sm:p-6">
                         <div className="space-y-4 max-h-96 overflow-y-auto">
                           {processingStatus.sections.map(
                             (section: any, index: number) => (
                               <div
                                 key={index}
-                                className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700"
+                                className="flex grow flex-col lg:flex-row lg:items-center justify-between p-3 sm:p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 gap-3"
                               >
-                                <div className="flex-grow">
-                                  <div className="flex items-center space-x-2">
-                                    <h5 className="font-medium text-gray-900 dark:text-white text-sm">
+                                <div className="flex-grow min-w-0">
+                                  <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2">
+                                    <h5 className="font-medium text-gray-900 dark:text-white text-sm break-words">
                                       {section.title}
                                     </h5>
                                     <div className="flex items-center space-x-1">
@@ -1847,7 +1847,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                                       </span>
                                     </div>
                                   </div>
-                                  <div className="flex items-center space-x-4 mt-2">
+                                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-2">
                                     <span className="text-xs text-gray-500 dark:text-gray-400">
                                       📄 Pages {section.startPage}-
                                       {section.endPage}
@@ -1859,19 +1859,21 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                                     </span>
                                   </div>
                                 </div>
-                                <div className="flex-shrink-0 flex gap-2">
+                                <div className="flex flex-col">
+
+                                <div className="flex flex-col sm:flex-row gap-2 lg:flex-shrink-0">
                                   <button
                                     onClick={() =>
                                       generateSectionPDFDownload(section)
                                     }
                                     disabled={isGeneratingPDF}
-                                    className={`inline-flex items-center text-xs px-3 py-2 rounded transition duration-200 ${
+                                    className={`inline-flex items-center justify-center text-xs px-3 py-2 rounded transition duration-200 ${
                                       isGeneratingPDF &&
                                       generatingSection === section.title
-                                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                                        : "bg-blue-500 text-white hover:bg-blue-600"
+                                      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                      : "bg-blue-500 text-white hover:bg-blue-600"
                                     }`}
-                                  >
+                                    >
                                     {isGeneratingPDF &&
                                     generatingSection === section.title ? (
                                       <>
@@ -1888,10 +1890,10 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                                   <button
                                     onClick={() => generateTTSForSection(section)}
                                     disabled={isGeneratingTTS}
-                                    className={`inline-flex items-center text-xs px-3 py-2 rounded transition duration-200 ${
+                                    className={`inline-flex items-center justify-center text-xs px-3 py-2 rounded transition duration-200 ${
                                       isGeneratingTTS && generatingTTSSection === section.title
-                                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                                        : "bg-green-500 text-white hover:bg-green-600"
+                                      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                      : "bg-green-500 text-white hover:bg-green-600"
                                     }`}
                                   >
                                     {isGeneratingTTS && generatingTTSSection === section.title ? (
@@ -1904,9 +1906,10 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                                     )}
                                   </button>
                                 </div>
+                                <div id={`audio-container-${section.id || section.title.replace(/[^a-zA-Z0-9]/g, '_')}`} className="mt-2 w-full"></div>
+                                    </div>
                                 
                                 {/* Client-side TTS audio container */}
-                                <div id={`audio-container-${section.id || section.title.replace(/[^a-zA-Z0-9]/g, '_')}`} className="mt-2"></div>
 
                               </div>
                             )
@@ -1920,11 +1923,11 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                   <div className="text-center space-y-3">
                     <Link
                       to="/gallery"
-                      className="inline-block bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3 px-8 rounded-lg transition duration-200 shadow-lg transform hover:scale-105"
+                      className="inline-block bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3 px-6 sm:px-8 rounded-lg transition duration-200 shadow-lg transform hover:scale-105"
                     >
                       🔍 View Results in Gallery →
                     </Link>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs">
+                    <p className="text-gray-500 dark:text-gray-400 text-xs px-4">
                       Your document summaries and downloadable PDFs are now
                       available
                     </p>
@@ -1936,7 +1939,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                     <div className="flex justify-end mb-4">
                       <button
                         onClick={stitchAllSectionsPDFDownload}
-                        className="px-4 py-2 bg-purple-600 text-white text-sm rounded-md hover:bg-purple-700 transition duration-200 font-medium shadow-sm"
+                        className="px-3 sm:px-4 py-2 bg-purple-600 text-white text-xs sm:text-sm rounded-md hover:bg-purple-700 transition duration-200 font-medium shadow-sm w-full sm:w-auto"
                       >
                         📄 Download Full PDF (All Sections)
                       </button>
@@ -1947,8 +1950,8 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
 
             {processingStatus.status === "awaiting_outline_approval" && (
               <div className="space-y-6">
-                <div className="p-6 bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/50 dark:to-amber-900/50 border border-yellow-200 dark:border-yellow-800 rounded-lg">
-                  <div className="flex items-center space-x-4 mb-4">
+                <div className="p-4 sm:p-6 bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/50 dark:to-amber-900/50 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 mb-4">
                     <div className="flex-shrink-0">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-yellow-100 dark:bg-yellow-800 rounded-full">
                         <svg
@@ -1966,8 +1969,8 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                         </svg>
                       </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-yellow-800 dark:text-yellow-200">
+                    <div className="min-w-0">
+                      <h3 className="text-lg sm:text-xl font-bold text-yellow-800 dark:text-yellow-200">
                         📋 Outline Generated - Review Required
                       </h3>
                       <p className="text-yellow-600 dark:text-yellow-300 text-sm">
@@ -1982,8 +1985,8 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                 {/* Outline Display */}
                 {editableOutline.length > 0 && (
                   <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
-                    <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <div className="px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                      <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
                         📖 Document Outline ({editableOutline.length} sections)
                       </h4>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -1991,12 +1994,12 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                         detailed summarization
                       </p>
                     </div>
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                       <div className="space-y-4 max-h-96 overflow-y-auto">
                         {editableOutline.map((section, index) => (
                           <div
                             key={index}
-                            className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700"
+                            className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700"
                           >
                             <div className="flex-shrink-0">
                               <div className="w-8 h-8 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center">
@@ -2006,40 +2009,42 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                               </div>
                             </div>
                             <div className="flex-grow min-w-0">
-                              <h5 className="font-medium text-gray-900 dark:text-white text-sm">
+                              <h5 className="font-medium text-gray-900 dark:text-white text-sm break-words">
                                 {section.title}
                               </h5>
-                              <div className="flex items-center space-x-4 mt-2">
+                              <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2">
                                 <span className="text-xs text-gray-500 dark:text-gray-400">
                                   📄 Pages
                                 </span>
-                                <input
-                                  type="number"
-                                  value={section.start_page}
-                                  onChange={(e) =>
-                                    handleUpdateSection(
-                                      index,
-                                      "start_page",
-                                      parseInt(e.target.value)
-                                    )
-                                  }
-                                  className="w-16 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm"
-                                />
-                                <span className="text-xs text-gray-500 dark:text-gray-400">
-                                  -
-                                </span>
-                                <input
-                                  type="number"
-                                  value={section.end_page}
-                                  onChange={(e) =>
-                                    handleUpdateSection(
-                                      index,
-                                      "end_page",
-                                      parseInt(e.target.value)
-                                    )
-                                  }
-                                  className="w-16 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm"
-                                />
+                                <div className="flex items-center space-x-2">
+                                  <input
+                                    type="number"
+                                    value={section.start_page}
+                                    onChange={(e) =>
+                                      handleUpdateSection(
+                                        index,
+                                        "start_page",
+                                        parseInt(e.target.value)
+                                      )
+                                    }
+                                    className="w-16 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm"
+                                  />
+                                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    -
+                                  </span>
+                                  <input
+                                    type="number"
+                                    value={section.end_page}
+                                    onChange={(e) =>
+                                      handleUpdateSection(
+                                        index,
+                                        "end_page",
+                                        parseInt(e.target.value)
+                                      )
+                                    }
+                                    className="w-16 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm"
+                                  />
+                                </div>
                               </div>
                             </div>
                             <div className="flex-shrink-0">
@@ -2067,18 +2072,18 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                         ))}
                       </div>
                     </div>
-                    <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-b-lg">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
+                    <div className="px-4 sm:px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-b-lg">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                           <button
                             onClick={downloadTableOfContents}
-                            className="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition duration-200 font-medium"
+                            className="px-3 sm:px-4 py-2 bg-gray-600 text-white text-xs sm:text-sm rounded-md hover:bg-gray-700 transition duration-200 font-medium"
                           >
                             📥 Download TXT
                           </button>
                           <button
                             onClick={downloadTableOfContentsJson}
-                            className="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition duration-200 font-medium"
+                            className="px-3 sm:px-4 py-2 bg-blue-600 text-white text-xs sm:text-sm rounded-md hover:bg-blue-700 transition duration-200 font-medium"
                           >
                             📥 Download JSON
                           </button>
@@ -2086,7 +2091,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                         <div className="flex items-center space-x-3">
                           <button
                             onClick={continueProcessing}
-                            className="px-6 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-sm rounded-md transition duration-200 font-medium shadow-lg transform hover:scale-105"
+                            className="px-4 sm:px-6 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-xs sm:text-sm rounded-md transition duration-200 font-medium shadow-lg transform hover:scale-105 w-full sm:w-auto"
                           >
                             ✅ Continue
                           </button>
@@ -2099,8 +2104,8 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
             )}
 
             {processingStatus.status === "failed" && (
-              <div className="p-6 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/50 dark:to-pink-900/50 border border-red-200 dark:border-red-800 rounded-lg">
-                <div className="flex items-start space-x-4">
+              <div className="p-4 sm:p-6 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/50 dark:to-pink-900/50 border border-red-200 dark:border-red-800 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
                   <div className="flex-shrink-0">
                     <div className="inline-flex items-center justify-center w-10 h-10 bg-red-100 dark:bg-red-800 rounded-full">
                       <svg
@@ -2118,8 +2123,8 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                       </svg>
                     </div>
                   </div>
-                  <div className="flex-grow">
-                    <p className="text-red-800 dark:text-red-200 font-bold text-lg">
+                  <div className="flex-grow min-w-0">
+                    <p className="text-red-800 dark:text-red-200 font-bold text-base sm:text-lg">
                       ⚠️ Processing Failed
                     </p>
                     <p className="text-red-600 dark:text-red-300 text-sm mt-1">
@@ -2128,7 +2133,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
                     </p>
                     {processingStatus.errorMessage && (
                       <div className="mt-3 p-3 bg-red-100 dark:bg-red-800/50 rounded border border-red-200 dark:border-red-700">
-                        <p className="text-red-800 dark:text-red-200 text-sm font-mono">
+                        <p className="text-red-800 dark:text-red-200 text-sm font-mono break-words">
                           <strong>Error details:</strong>{" "}
                           {processingStatus.errorMessage}
                         </p>
