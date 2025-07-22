@@ -1476,7 +1476,7 @@ ${firstPageText.substring(0, 2000)}` // Limit to first 2000 chars to stay within
             {/* REAL-TIME Processing Status Display */}
             {/* Embedded PDF Viewer */}
             {(localPdfUrl || pdfUrl) && (
-              <div className="mb-8">
+              <div className="max-md:hidden mb-8">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Preview PDF
                 </h3>

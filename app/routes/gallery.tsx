@@ -358,10 +358,10 @@ function DocumentCard({
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex-1">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-4">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 break-words">
             <span>{document.originalName}</span>
           </h3>
           
@@ -370,10 +370,10 @@ function DocumentCard({
             <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-800 rounded-lg">
               <div className="space-y-1 text-sm">
                 {document.pdfTitle && (
-                  <div className="flex items-center">
-                    <span className="text-blue-600 dark:text-blue-300 font-medium w-16">Title:</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-blue-600 dark:text-blue-300 font-medium sm:w-16 flex-shrink-0">Title:</span>
                     <span 
-                      className="text-blue-800 dark:text-blue-200"
+                      className="text-blue-800 dark:text-blue-200 break-words"
                       dangerouslySetInnerHTML={{ 
                         __html: highlightText(document.pdfTitle, searchQuery) 
                       }}
@@ -381,10 +381,10 @@ function DocumentCard({
                   </div>
                 )}
                 {document.pdfAuthor && (
-                  <div className="flex items-center">
-                    <span className="text-blue-600 dark:text-blue-300 font-medium w-16">Author:</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-blue-600 dark:text-blue-300 font-medium sm:w-16 flex-shrink-0">Author:</span>
                     <span 
-                      className="text-blue-800 dark:text-blue-200"
+                      className="text-blue-800 dark:text-blue-200 break-words"
                       dangerouslySetInnerHTML={{ 
                         __html: highlightText(document.pdfAuthor, searchQuery) 
                       }}
@@ -395,7 +395,7 @@ function DocumentCard({
             </div>
           )}
           {document.pdfR2Key && (
-            <div className="mb-2">
+            <div className="mb-2 flex flex-wrap gap-2">
               <a
                 href={`/api/files/original?key=${encodeURIComponent(
                   document.pdfR2Key
@@ -410,13 +410,13 @@ function DocumentCard({
                 <>
                   <a
                     onClick={downloadTableOfContents}
-                    className="inline-flex items-center text-xs text-blue-600 hover:underline ml-4 cursor-pointer"
+                    className="inline-flex items-center text-xs text-blue-600 hover:underline cursor-pointer"
                   >
                     📥 TOC TXT
                   </a>
                   <a
                     onClick={downloadTableOfContentsJson}
-                    className="inline-flex items-center text-xs text-blue-600 hover:underline ml-4 cursor-pointer"
+                    className="inline-flex items-center text-xs text-blue-600 hover:underline cursor-pointer"
                   >
                     📥 TOC JSON
                   </a>
@@ -424,18 +424,13 @@ function DocumentCard({
               )}
             </div>
           )}
-          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-gray-500 dark:text-gray-400">
             <span>📅 {formatDate(document.createdAt)}</span>
             {document.completedAt && (
               <span>✅ Completed {formatDate(document.completedAt)}</span>
             )}
           </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">
-            Completed
-          </span>
-        </div>
+        </div>        
       </div>
 
       {/* Document Sections */}
@@ -447,20 +442,20 @@ function DocumentCard({
             </p>
           </div>
 
-          <div className="flex justify-end mb-4 gap-2">
+          <div className="flex flex-col sm:flex-row justify-end mb-4 gap-2">
             <button
               onClick={handleDownloadFullPDF}
               disabled={isGenerating}
-              className="px-4 py-2 bg-purple-600 text-white text-sm rounded-md hover:bg-purple-700 transition duration-200 font-medium shadow-sm"
+              className="px-3 sm:px-4 py-2 bg-purple-600 text-white text-xs sm:text-sm rounded-md hover:bg-purple-700 transition duration-200 font-medium shadow-sm w-full sm:w-auto"
             >
               {isGenerating
                 ? "Generating..."
-                : "📄 Download Full Summary PDF (All Sections)"}
+                : "📄 Download Full Summary PDF"}
             </button>
             
             <button
               onClick={downloadFullSummaryText}
-              className="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition duration-200 font-medium shadow-sm"
+              className="px-3 sm:px-4 py-2 bg-blue-600 text-white text-xs sm:text-sm rounded-md hover:bg-blue-700 transition duration-200 font-medium shadow-sm w-full sm:w-auto"
             >
               📝 Download Full Summary Text
             </button>
@@ -468,7 +463,7 @@ function DocumentCard({
             <button
               onClick={generateTTSForFullSummary}
               disabled={isGeneratingTTS}
-              className={`px-4 py-2 text-sm rounded-md transition duration-200 font-medium shadow-sm ${
+              className={`px-3 sm:px-4 py-2 text-xs sm:text-sm rounded-md transition duration-200 font-medium shadow-sm w-full sm:w-auto ${
                 isGeneratingTTS && generatingTTSSection === 'full-summary'
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                   : "bg-green-600 text-white hover:bg-green-700"
@@ -508,9 +503,6 @@ function DocumentCard({
               </>
             )}
           </button>
-          
-          {/* Full summary TTS audio container */}
-          <div id="full-summary-audio-container" className="mb-4"></div>
 
           {isExpanded && (
             <>
@@ -518,15 +510,15 @@ function DocumentCard({
                 {sections.map((section) => (
                   <div
                     key={section.id}
-                    className="border border-gray-200 dark:border-gray-600 rounded-lg p-4"
+                    className="border border-gray-200 dark:border-gray-600 rounded-lg p-3 sm:p-4"
                   >
-                    <div className="flex items-start justify-between mb-2">
-                      <h4 className="font-medium text-gray-900 dark:text-white">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2 gap-2">
+                      <h4 className="font-medium text-gray-900 dark:text-white break-words">
                         <span dangerouslySetInnerHTML={{ 
                           __html: highlightText(section.title, searchQuery) 
                         }} />
                       </h4>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-2">
+                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
                         Pages {section.startPage}-{section.endPage}
                       </span>
                     </div>
@@ -538,7 +530,7 @@ function DocumentCard({
                         ) {
                           return (
                             <div key={index} className="flex items-start">
-                              <span className="text-blue-500 mr-2 mt-1">•</span>
+                              <span className="text-blue-500 mr-2 mt-1 flex-shrink-0">•</span>
                               <span dangerouslySetInnerHTML={{ 
                                 __html: highlightText(line.replace(/^[•\-]\s*/, ""), searchQuery) 
                               }} />
@@ -566,13 +558,13 @@ function DocumentCard({
                     )}
                     {/* Client-side TTS audio container */}
                     <div id={`audio-container-${section.id}`} className="mt-2"></div>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-2">
                       <button
                         onClick={() => handleDownloadSectionPDF(section)}
                         disabled={
                           isGenerating && generatingSection === section.title
                         }
-                        className={`inline-flex items-center text-xs px-3 py-2 rounded transition duration-200 ${
+                        className={`inline-flex items-center justify-center text-xs px-3 py-2 rounded transition duration-200 w-full sm:w-auto ${
                           isGenerating && generatingSection === section.title
                             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                             : "bg-blue-500 text-white hover:bg-blue-600"
@@ -590,7 +582,7 @@ function DocumentCard({
                       
                       <button
                         onClick={() => downloadSectionSummaryText(section)}
-                        className="inline-flex items-center text-xs px-3 py-2 rounded transition duration-200 bg-orange-500 text-white hover:bg-orange-600"
+                        className="inline-flex items-center justify-center text-xs px-3 py-2 rounded transition duration-200 bg-orange-500 text-white hover:bg-orange-600 w-full sm:w-auto"
                       >
                         📝 Download Section Text
                       </button>
@@ -600,7 +592,7 @@ function DocumentCard({
                         disabled={
                           isGeneratingTTS && generatingTTSSection === section.title
                         }
-                        className={`inline-flex items-center text-xs px-3 py-2 rounded transition duration-200 ${
+                        className={`inline-flex items-center justify-center text-xs px-3 py-2 rounded transition duration-200 w-full sm:w-auto ${
                           isGeneratingTTS && generatingTTSSection === section.title
                             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                             : "bg-green-500 text-white hover:bg-green-600"
@@ -699,18 +691,18 @@ export default function Gallery({ loaderData }: Route.ComponentProps) {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <header className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
             Public Gallery
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-4">
             Browse completed PDF summaries
           </p>
-          <div className="flex justify-center space-x-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4">
             <Link
               to="/"
-              className="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+              className="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-200 text-center"
             >
               ← Upload New PDF
             </Link>
@@ -718,7 +710,7 @@ export default function Gallery({ loaderData }: Route.ComponentProps) {
               href="https://github.com/Mr-Ples/summarizer-public"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+              className="inline-flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-md transition duration-200"
             >
               <img src={GithubImage} alt="GitHub" className="w-4 h-4 mr-2" />
               GitHub
@@ -756,13 +748,13 @@ export default function Gallery({ loaderData }: Route.ComponentProps) {
           <div className="text-center py-12">
             {searchQuery ? (
               <>
-                <div className="text-gray-400 dark:text-gray-500 text-6xl mb-4">
-                  
+                <div className="text-gray-400 dark:text-gray-500 text-4xl sm:text-6xl mb-4">
+                  🔍
                 </div>
-                <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
+                <h3 className="text-lg sm:text-xl font-medium text-gray-900 dark:text-white mb-2">
                   No documents found
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 px-4">
                   Try adjusting your search terms
                 </p>
                 <button
@@ -774,13 +766,13 @@ export default function Gallery({ loaderData }: Route.ComponentProps) {
               </>
             ) : (
               <>
-                <div className="text-gray-400 dark:text-gray-500 text-6xl mb-4">
-                  
+                <div className="text-gray-400 dark:text-gray-500 text-4xl sm:text-6xl mb-4">
+                  📄
                 </div>
-                <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
+                <h3 className="text-lg sm:text-xl font-medium text-gray-900 dark:text-white mb-2">
                   No completed documents yet
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 px-4">
                   Upload and process a PDF to see it here!
                 </p>
                 <Link
@@ -793,8 +785,8 @@ export default function Gallery({ loaderData }: Route.ComponentProps) {
             )}
           </div>
         ) : (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+          <div className="space-y-4 sm:space-y-6">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white px-2 sm:px-0">
               {searchQuery ? `Search Results (${filteredDocuments.length})` : `Completed Documents (${filteredDocuments.length})`}
             </h2>
 
