@@ -9,6 +9,7 @@ import {
   stitchSectionPDFs,
   downloadPDF,
 } from "../utils/pdfGenerator"
+import GithubImage from "@assets/github-mark-white.png"
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -719,7 +720,7 @@ export default function Gallery({ loaderData }: Route.ComponentProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-md transition duration-200"
             >
-              <img src="/assets/github-mark-white.png" alt="GitHub" className="w-4 h-4 mr-2" />
+              <img src={GithubImage} alt="GitHub" className="w-4 h-4 mr-2" />
               GitHub
             </a>
           </div>

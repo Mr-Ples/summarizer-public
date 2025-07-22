@@ -11,6 +11,7 @@ import {
 
 import type { Route } from "./+types/upload"
 import { putS3Object } from "~/lib/s3.server"
+import GithubImage from "@assets/github-mark-white.png"
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -1152,21 +1153,21 @@ console.log(response)
             AI-powered document analysis with Google Gemini
           </p>
           <div className="flex justify-center space-x-4">
-            <Link
-              to="/gallery"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
-            >
-              View Public Gallery →
-            </Link>
             <a
               href="https://github.com/Mr-Ples/summarizer-public"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-md transition duration-200"
             >
-              <img src="/assets/github-mark-white.png" alt="GitHub" className="w-4 h-4 mr-2" />
+              <img src={GithubImage} alt="GitHub" className="w-4 h-4 mr-2" />
               GitHub
             </a>
+            <Link
+              to="/gallery"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+            >
+              View Public Gallery →
+            </Link>
           </div>
         </header>
 

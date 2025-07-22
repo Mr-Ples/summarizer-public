@@ -20,5 +20,8 @@
       "database_id": "",
       "migrations_dir": "drizzle"
     }
-  ]
+  ],
+  "assets": {
+    "directory": "./build/client"
+  },
 }
