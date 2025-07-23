@@ -6,7 +6,6 @@ declare namespace Cloudflare {
 		DATABASE_ID: string;
 		CLOUDFLARE_API_KEY_DRIZZLE: string;
 		CLOUDFLARE_ACCOUNT_ID: string;
-		GEMINI_API_KEY: string;
 		B2_REGION: string;
 		B2_ENDPOINT: string;
 		B2_KEY_ID: string;
